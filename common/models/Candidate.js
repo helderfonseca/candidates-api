@@ -28,7 +28,7 @@ const CandidateModel = {
 }  
 
 module.exports = {
-  initialise: (sequelize) => {
+  initialize: (sequelize) => {
     this.model = sequelize.define("candidate", CandidateModel);
   },
 

@@ -12,25 +12,22 @@ const CandidateRoutes = require('./candidates/routes.js');
 // Sequelize model imports
 const CandidateModel = require('./common/models/Candidate');
 
-app.use(cors);
-
+app.use(cors());
 app.use(express.json());
 
 const sequelize  = new Sequelize({
-  host: 'localhost',
   dialect: "sqlite",
   storage: "./storage/data.db",
 })
 
-
-CandidateModel.initialise(sequelize);
+CandidateModel.initialize(sequelize);
 
 sequelize
   .sync()
   .then(() => {
     console.log("Sequelize Initialized!");
 
-    app.use("/candidates", CandidateRoutes);
+    app.use("/api/v1/candidates", CandidateRoutes);
     
     app.listen(PORT, () => {
       console.log('Server listing on PORT: ', port)
